@@ -53,6 +53,7 @@
 <script setup>
 import { useUserStore } from "~/store";
 const router = useRouter()
+const route = useRoute()
 const user = useUserStore();
 const username = ref("");
 const password = ref("");
@@ -99,7 +100,7 @@ const signin = async () => {
     user.setUser(usrname, token, id);
 
     setTimeout(() => {
-      router.push("/");
+      router.back();
     }, 1000);
   } catch (err) {
     if (typeof err.statusCode === "undefined") {

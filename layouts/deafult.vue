@@ -61,6 +61,8 @@ const isLoggedIn = computed(() => user.isLoggedIn);
 
 const logout = () => {
   user.logout();
-  router.replace("/");
+  reloadNuxtApp()
+  // window.location.reload()
+  // router.back()
 };
 </script>
