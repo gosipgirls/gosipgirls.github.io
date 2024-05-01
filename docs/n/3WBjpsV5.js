@@ -1,0 +1,1 @@
+import{c as e,o as c,a as s}from"./BUKr0aQZ.js";const t={class:"col-span-4 sm:col-span-4 lg:col-span-4"},l=s("div",{class:"w-full h-full flex justify-center items-center"},[s("div",null,[s("h3",{class:"text-3xl"},"pics")])],-1),o=[l],r={__name:"pics",setup(a){return(n,_)=>(c(),e("div",t,o))}};export{r as default};
