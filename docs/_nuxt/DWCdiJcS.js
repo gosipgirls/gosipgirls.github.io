@@ -1,0 +1,1 @@
+import{a2 as r}from"./BmPOnJdt.js";const u=r("user",{state:()=>({username:null,token:null,id:null}),actions:{setUser(e,s,t){this.username=e,this.token=s,this.id=t},logout(){this.username=null,this.token=null,this.id=null}},getters:{isLoggedIn:e=>!!e.id,user:e=>({username:e.username,id:e.id,token:e.token})},persist:{storage:window.localStorage}});export{u};
