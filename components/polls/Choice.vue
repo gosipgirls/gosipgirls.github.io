@@ -113,7 +113,7 @@ const choose = () => {
   emit("choose", props.id as number);
 };
 </script>
-
+<!-- 
 <style>
 .choice {
   cursor: pointer;
@@ -153,4 +153,4 @@ const choose = () => {
   border-radius: 50%;
   background: transparent;
 }
-</style>
+</style> -->

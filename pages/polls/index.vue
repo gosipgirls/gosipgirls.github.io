@@ -87,7 +87,7 @@
     title: "gossipgirls - polls",
   });
   </script>
-  <style>
+  <!-- <style>
   .prev {
     background: #ffff001f;
     border-color: #ffff0047;
@@ -110,4 +110,4 @@
     border-color: #3b30bd47;
   } */
   </style>
-  
+   -->

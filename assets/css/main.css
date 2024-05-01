@@ -8,3 +8,72 @@ backdrop-filter: blur(9px);
   border: 1px solid #f0f8ff38;
   border-radius: 12px;
 }
+
+/*polls index*/
+.prev {
+  background: #ffff001f;
+  border-color: #ffff0047;
+}
+
+.prev:hover {
+  background: #65654e1f
+}
+
+.next {
+  background: #ffff001f;
+  border-color: #ffff0047;
+}
+
+.next:hover {
+  background: #65654e1f
+}
+
+
+/* choice */
+
+.choice {
+  cursor: pointer;
+  transition: all 0.5s;
+  background: transparent;
+  backdrop-filter: blur(0px);
+}
+.choice:hover {
+  background: rgba(4, 96, 234, 0.1);
+  /* border: 1px solid #f0f8ff38; */
+  /* border-radius: 12px; */
+}
+.choice-circle.my_choice,
+.choice-circle.loading {
+  background-color: rgb(254 240 138);
+}
+.choice:hover .choice-circle,
+.choice:hover .choice-circle::before {
+  background: rgb(254 240 138);
+  /* background: rgb(59 130 246 / 0.9 ) */
+}
+
+.choice-circle {
+  transition: all 0.6s;
+  position: relative;
+}
+.choice-circle::before {
+  transition: all 0.5s;
+  display: block;
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: transparent;
+}
+
+/*poll*/
+.image-container {
+  box-shadow: 0px 0px 0px 1px rgb(30 41 59);
+  background: #8d96f36b;
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+}

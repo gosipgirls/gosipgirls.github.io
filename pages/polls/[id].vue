@@ -200,13 +200,11 @@ onMounted(() => {
   fetchDate();
 });
 </script>
-<style>
+<!-- <style>
 .image-container {
-  /* box-shadow: 0px 0px 0px 1px #fef08a99; */
   box-shadow: 0px 0px 0px 1px rgb(30 41 59);
   background: #8d96f36b;
   backdrop-filter: blur(10px);
   border-radius: 12px;
-  /* border: 1px solid #f0f8ff38; */
 }
-</style>
+</style> -->
