@@ -1,1 +1,0 @@
-import{o as a,c as n,r,n as o}from"./BmPOnJdt.js";const p={__name:"Container",props:{classes:{type:String}},setup(s){const e=s;return(t,c)=>(a(),n("div",{class:o(`col-span-1 sm:col-span-1 lg:col-span-1 text-white relative items-center justify-center ${e.classes}`)},[r(t.$slots,"default")],2))}};export{p as _};
