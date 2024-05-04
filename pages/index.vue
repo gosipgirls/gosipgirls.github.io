@@ -26,7 +26,7 @@
   </SidebarContainer>
 
   <div class="lg:col-span-3 sm:col-span-5 col-span-5 px-5">
-    <div class="bg-white overflow-hidden rounded-md w-full h-full flex">
+    <div class="bg-white overflow-hidden rounded-md w-full flex">
       <!-- height="150px" -->
       <!-- width="150px" -->
       <div class="py-2">

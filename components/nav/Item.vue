@@ -10,7 +10,9 @@
         :src="props.img"
         width="200px"
         height="200px"
-        :class="`absolute rotate-90 ${props.imgClass ? props.imgClass : ''}`"
+        :class="`absolute ${props.imgClass ? props.imgClass : ''} ${
+          props.shouldNotRotate ? '' : 'rotate-90'
+        } `"
         :style="`${props.imgStyle ? props.imgStyle : ''}`"
       />
       <!-- <img :src="props.img"/> sizes="100vw sm:50vw md:400px" -->
@@ -35,6 +37,9 @@
     },
     imgStyle: {
       type: String,
+    },
+    shouldNotRotate: {
+      type: Boolean,
     },
   });
 </script>

@@ -53,6 +53,7 @@
                 imgStyle="bottom:-25px;max-width:120%; left:-10px"
                 img="/l.JPG"
                 imgClass="-scale-y-100 rotate-180"
+                :shouldNotRotate="true"
               />
               <NavItem
                 @click="() => {}"
@@ -60,6 +61,7 @@
                 imgStyle="bottom:-22px;max-width:120%; left:-10px"
                 img="/p.jpeg"
                 imgClass="-scale-y-100 rotate-180"
+                :shouldNotRotate="true"
               />
             </template>
           </div>
@@ -100,6 +102,7 @@
                 imgStyle="bottom:-25px;max-width:120%; left:-10px"
                 img="/l.JPG"
                 imgClass="-scale-y-100 rotate-180"
+                :shouldNotRotate="true"
               />
               <NavItem
                 @click="() => {}"
@@ -107,6 +110,7 @@
                 imgStyle="bottom:-22px;max-width:120%; left:-10px"
                 img="/p.jpeg"
                 imgClass="-scale-y-100 rotate-180"
+                :shouldNotRotate="true"
               />
             </template>
           </div>
