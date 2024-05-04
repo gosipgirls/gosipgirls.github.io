@@ -21,10 +21,10 @@
       <div
         class="grid grid-cols-5 gap-1 max-w-[960px] lg:w-[960px] md:w-[768px] sm:min-w-[640px] px-1 shadow-2xl shadow-black bg-black bg-opacity-60 relative transition-all"
       >
-        <SidebarContainer
-          classes="pr-2 border-l border-l-2 border-l-black lg:hidden"
-        >
-          <div class="flex flex-row justify-center gap-x-8 lg:flex-col w-full">
+        <SidebarContainer classes="pr-2 lg:hidden">
+          <div
+            class="flex flex-row justify-center gap-x-8 lg:flex-col w-full flex-wrap"
+          >
             <NavItem
               title="home"
               to="/"
@@ -39,14 +39,29 @@
               imgStyle="bottom:-2px; max-width:129%"
               img="/o/icons/login.jpg"
             />
-            <NavItem
-              v-else
-              @click="logout"
-              title="logout"
-              imgStyle="bottom:-2px;max-width:120%; left:-10px"
-              img="/o/icons/login.jpg"
-              imgClass="-scale-x-100"
-            />
+            <template v-else="isLoggedIn">
+              <NavItem
+                @click="logout"
+                title="logout"
+                imgStyle="bottom:-2px;max-width:120%; left:-10px"
+                img="/o/icons/login.jpg"
+                imgClass="-scale-y-100"
+              />
+              <NavItem
+                @click="() => {}"
+                title="links"
+                imgStyle="bottom:-25px;max-width:120%; left:-10px"
+                img="/l.JPG"
+                imgClass="-scale-y-100 rotate-180"
+              />
+              <NavItem
+                @click="() => {}"
+                title="pics"
+                imgStyle="bottom:-22px;max-width:120%; left:-10px"
+                img="/p.jpeg"
+                imgClass="-scale-y-100 rotate-180"
+              />
+            </template>
           </div>
         </SidebarContainer>
         <slot />
@@ -71,14 +86,29 @@
               imgStyle="bottom:-2px; max-width:129%"
               img="/o/icons/login.jpg"
             />
-            <NavItem
-              v-else
-              @click="logout"
-              title="logout"
-              imgStyle="bottom:-2px;max-width:120%; left:-10px"
-              img="/o/icons/login.jpg"
-              imgClass="-scale-y-100"
-            />
+            <template v-else="isLoggedIn">
+              <NavItem
+                @click="logout"
+                title="logout"
+                imgStyle="bottom:-2px;max-width:120%; left:-10px"
+                img="/o/icons/login.jpg"
+                imgClass="-scale-y-100"
+              />
+              <NavItem
+                @click="() => {}"
+                title="links"
+                imgStyle="bottom:-25px;max-width:120%; left:-10px"
+                img="/l.JPG"
+                imgClass="-scale-y-100 rotate-180"
+              />
+              <NavItem
+                @click="() => {}"
+                title="pics"
+                imgStyle="bottom:-22px;max-width:120%; left:-10px"
+                img="/p.jpeg"
+                imgClass="-scale-y-100 rotate-180"
+              />
+            </template>
           </div>
         </SidebarContainer>
       </div>
