@@ -1,0 +1,1 @@
+import{o as t,c as n,r as o,n as r}from"./CxbzL6SV.js";const p={__name:"Container",props:{classes:{type:String}},setup(e){const s=e;return(a,c)=>(t(),n("div",{class:r(`col-span-5 sm:col-span-5 lg:col-span-1 text-white relative  justify-center ${s.classes?s.classes:""}`)},[o(a.$slots,"default")],2))}};export{p as _};

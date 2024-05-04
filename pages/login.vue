@@ -1,7 +1,7 @@
 <template>
-  <div class="col-span-4 sm:col-span-4 lg:col-span-4">
+  <div class="col-span-5 lg:col-span-4">
     <div class="w-full h-full flex justify-center items-center blur-background">
-      <div class="min-w-[415px] w-[415px]">
+      <div class="max-w-[415px] w-[415px] px-2 py-5">
         <h3 class="text-3xl mb-3">Login</h3>
         <form class="flex flex-col gap-2" @submit.prevent="signin">
           <input
@@ -26,7 +26,7 @@
             <button
               class="transition-all p-2 rounded-md px-4 bg-yellow-100 text-black self-end hover:bg-yellow-200"
             >
-              {{ loading.valueOf() ? 'loading ...' : 'sign in' }}
+              {{ loading.valueOf() ? "loading ..." : "sign in" }}
             </button>
           </div>
         </form>
@@ -51,76 +51,76 @@
 </template>
 
 <script setup>
-import { useUserStore } from "~/store";
-const router = useRouter()
-const route = useRoute()
-const user = useUserStore();
-const username = ref("");
-const password = ref("");
-const loading = ref(false);
+  import { useUserStore } from "~/store";
+  const router = useRouter();
+  const route = useRoute();
+  const user = useUserStore();
+  const username = ref("");
+  const password = ref("");
+  const loading = ref(false);
 
-const shouldError = ref(false);
-const erros = ref([]);
-const serverError = ref("");
+  const shouldError = ref(false);
+  const erros = ref([]);
+  const serverError = ref("");
 
-const shouldSuccess = ref(false);
+  const shouldSuccess = ref(false);
 
-const signin = async () => {
-  shouldSuccess.value = false;
-  shouldError.value = false;
-  erros.value = [];
-  serverError.value = null;
-  if (!username.value.trim()) {
-    erros.value.push("Username is Required");
-  }
-
-  if (!password.value.trim()) {
-    erros.value.push("Password is Required");
-  }
-
-  if (erros.value.length > 0) {
-    shouldError.value = true;
-    return;
-  }
-  try {
-    loading.value = true;
-    const data = await $fetch(
-      "https://gossipgirls.pythonanywhere.com/api/login/",
-      {
-        method: "POST",
-        body: {
-          username: username.value,
-          password: password.value,
-        },
-      }
-    );
-    shouldSuccess.value = true;
-
-    const { token, usrname, id } = data;
-    user.setUser(usrname, token, id);
-
-    setTimeout(() => {
-      router.back();
-    }, 1000);
-  } catch (err) {
-    if (typeof err.statusCode === "undefined") {
-      shouldError.value = true;
-      serverError.value = err.cause.message;
-    } else {
-      if (err.statusCode >= 400 && err.statusCode < 500) {
-        shouldError.value = true;
-        erros.value = Object.values(err.data).flat();
-      }
+  const signin = async () => {
+    shouldSuccess.value = false;
+    shouldError.value = false;
+    erros.value = [];
+    serverError.value = null;
+    if (!username.value.trim()) {
+      erros.value.push("Username is Required");
     }
-    console.log({ err });
-  } finally {
-    loading.value = false;
-  }
-};
-definePageMeta({
-  layout: "deafult",
-});
-useHead({
-  title: "gossipgirls - login",
-});
+
+    if (!password.value.trim()) {
+      erros.value.push("Password is Required");
+    }
+
+    if (erros.value.length > 0) {
+      shouldError.value = true;
+      return;
+    }
+    try {
+      loading.value = true;
+      const data = await $fetch(
+        "https://gossipgirls.pythonanywhere.com/api/login/",
+        {
+          method: "POST",
+          body: {
+            username: username.value,
+            password: password.value,
+          },
+        }
+      );
+      shouldSuccess.value = true;
+
+      const { token, usrname, id } = data;
+      user.setUser(usrname, token, id);
+
+      setTimeout(() => {
+        router.back();
+      }, 1000);
+    } catch (err) {
+      if (typeof err.statusCode === "undefined") {
+        shouldError.value = true;
+        serverError.value = err.cause.message;
+      } else {
+        if (err.statusCode >= 400 && err.statusCode < 500) {
+          shouldError.value = true;
+          erros.value = Object.values(err.data).flat();
+        }
+      }
+      console.log({ err });
+    } finally {
+      loading.value = false;
+    }
+  };
+  definePageMeta({
+    layout: "deafult",
+  });
+  useHead({
+    title: "gossipgirls - login",
+  });
 </script>

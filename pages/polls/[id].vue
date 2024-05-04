@@ -1,5 +1,5 @@
 <template>
-  <div class="col-span-4 sm:col-span-4 lg:col-span-4">
+  <div class="col-span-5 lg:col-span-4">
     <div class="w-full h-full flex flex-col py-5 px-2 rounded *:transition-all">
       <div>
         <h3 class="text-4xl text-center mb-5">{{ item?.question }}</h3>
@@ -112,93 +112,93 @@
   </Dialog>
 </template>
 <script setup>
-import { ref } from "vue";
-import { Dialog, DialogTitle, DialogDescription } from "@headlessui/vue";
+  import { ref } from "vue";
+  import { Dialog, DialogTitle, DialogDescription } from "@headlessui/vue";
 
-const isOpen = ref(false);
-const dialogType = ref(0);
+  const isOpen = ref(false);
+  const dialogType = ref(0);
 
-function setIsOpen(value) {
-  isOpen.value = value;
-}
-definePageMeta({
-  layout: "deafult",
-});
-
-// definePageMeta({ title: "gossipgirls"  });
-
-import { useUserStore } from "~/store";
-
-const user = useUserStore();
-
-const userID = computed(() => user.user.id);
-
-const route = useRoute();
-const router = useRouter();
-
-const item = ref(null);
-const has_voted = ref(false);
-const loading = ref(false);
-
-const fetchDate = async () => {
-  try {
-    loading.value = true;
-    const response = await $fetch(
-      "https://gossipgirls.pythonanywhere.com/api/polls/" + route.params.id
-    );
-
-    const totalVotes = response.choices.reduce(
-      (total, choice) => total + choice.votes.length,
-      0
-    );
-
-    response.choices = response.choices.map((choice) => {
-      const voted_by_me = choice.votes.find(
-        (vote) => vote.voted_by === userID.value
-      );
-      if (voted_by_me) {
-        has_voted.value = true;
-      }
-      return {
-        my_choice: voted_by_me,
-        loading: false,
-        ...choice,
-        percentage: (choice.votes.length / totalVotes) * 100,
-      };
-    });
-
-    document.querySelector("title").innerText =
-      "gossipgirls - " + response.question;
-
-    item.value = response;
-  } catch (err) {
-    console.log({ err });
-  } finally {
-    loading.value = false;
+  function setIsOpen(value) {
+    isOpen.value = value;
   }
-};
+  definePageMeta({
+    layout: "deafult",
+  });
 
-const choose = async (id) => {
-  await $fetch(
-    "https://gossipgirls.pythonanywhere.com/api/polls/" +
-      route.params.id +
-      "/choices/" +
-      id +
-      "/vote",
-    {
-      method: "POST",
-      body: {
-        voted_by: userID.value,
-      },
+  // definePageMeta({ title: "gossipgirls"  });
+
+  import { useUserStore } from "~/store";
+
+  const user = useUserStore();
+
+  const userID = computed(() => user.user.id);
+
+  const route = useRoute();
+  const router = useRouter();
+
+  const item = ref(null);
+  const has_voted = ref(false);
+  const loading = ref(false);
+
+  const fetchDate = async () => {
+    try {
+      loading.value = true;
+      const response = await $fetch(
+        "https://gossipgirls.pythonanywhere.com/api/polls/" + route.params.id
+      );
+
+      const totalVotes = response.choices.reduce(
+        (total, choice) => total + choice.votes.length,
+        0
+      );
+
+      response.choices = response.choices.map((choice) => {
+        const voted_by_me = choice.votes.find(
+          (vote) => vote.voted_by === userID.value
+        );
+        if (voted_by_me) {
+          has_voted.value = true;
+        }
+        return {
+          my_choice: voted_by_me,
+          loading: false,
+          ...choice,
+          percentage: (choice.votes.length / totalVotes) * 100,
+        };
+      });
+
+      document.querySelector("title").innerText =
+        "gossipgirls - " + response.question;
+
+      item.value = response;
+    } catch (err) {
+      console.log({ err });
+    } finally {
+      loading.value = false;
     }
-  );
+  };
 
-  await fetchDate();
-};
+  const choose = async (id) => {
+    await $fetch(
+      "https://gossipgirls.pythonanywhere.com/api/polls/" +
+        route.params.id +
+        "/choices/" +
+        id +
+        "/vote",
+      {
+        method: "POST",
+        body: {
+          voted_by: userID.value,
+        },
+      }
+    );
 
-onMounted(() => {
-  fetchDate();
-});
+    await fetchDate();
+  };
+
+  onMounted(() => {
+    fetchDate();
+  });
 </script>
 <!-- <style>
 .image-container {

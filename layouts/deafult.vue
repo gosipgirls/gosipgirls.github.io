@@ -11,7 +11,7 @@
           class="w-full relative sm:text-5xl font-semibold text-center h-[200px]"
         >
           <div
-            class="w-full h-[200px] bg-[url('/logo.svg')] bg-no-repeat bg-center bg-[length:1000px] sm:bg-[length:2000px]"
+            class="w-full h-[200px] bg-[url('/logo.svg')] bg-no-repeat bg-center bg-[length:1000px] md:bg-[length:2000px]"
           ></div>
           <!-- <img src="/logo.png" />/ -->
         </h2>
@@ -19,52 +19,67 @@
       <!-- Content -->
       <!-- lg:grid-cols-10 -->
       <div
-        class="grid grid-cols-5 gap-1 max-w-[960px] w-[960px] px-1 shadow-2xl shadow-black bg-black bg-opacity-60 relative transition-all"
+        class="grid grid-cols-5 gap-1 max-w-[960px] lg:w-[960px] md:w-[768px] sm:min-w-[640px] px-1 shadow-2xl shadow-black bg-black bg-opacity-60 relative transition-all"
       >
+        <SidebarContainer
+          classes="pr-2 border-l border-l-2 border-l-black lg:hidden"
+        >
+          <div class="flex flex-row justify-center gap-x-8 lg:flex-col w-full">
+            <NavItem
+              title="home"
+              to="/"
+              img="/o/icons/home.JPG"
+              imgStyle="bottom:-2px; max-width:129%"
+            />
+            <NavItem title="polls" to="/polls" img="/o/icons/polls.JPG" />
+            <NavItem
+              v-if="!isLoggedIn"
+              title="login"
+              to="/login"
+              imgStyle="bottom:-2px; max-width:129%"
+              img="/o/icons/login.jpg"
+            />
+            <NavItem
+              v-else
+              @click="logout"
+              title="logout"
+              imgStyle="bottom:-2px;max-width:120%; left:-10px"
+              img="/o/icons/login.jpg"
+              imgClass="-scale-x-100"
+            />
+          </div>
+        </SidebarContainer>
         <slot />
 
-        <SidebarContainer classes="pr-2 border-l border-l-2 border-l-black">
-          <NavItem
-            title="home"
-            to="/"
-            img="/icons/home.JPG"
-            imgStyle="bottom:-2px; max-width:129%"
-          />
-          <NavItem title="polls" to="/polls" img="/icons/polls.JPG" />
-          <NavItem
-            v-if="!isLoggedIn"
-            title="login"
-            to="/login"
-            imgStyle="bottom:-2px; max-width:129%"
-            img="/icons/login.jpg"
-          />
-          <NavItem
-            v-else
-            @click="logout"
-            title="logout"
-            imgStyle="bottom:-2px;max-width:120%; left:-10px"
-            img="/icons/login.jpg"
-            imgClass="-scale-x-100"
-          />
-          <!-- <div
-            v-if="isLoggedIn"
-            @click="logout"
-            class="cursor-pointer rounded-full w-32 h-32 transition-all hover:bg-opacity-75 bg-opacity-100 bg-[#c6bd49] py-1 my-5 ml-auto flex flex-col justify-between items-center"
+        <SidebarContainer
+          classes="pr-2 border-l border-l-2 border-l-black hidden lg:inline-grid"
+        >
+          <div
+            class="flex flex-row justify-center lg:justify-start gap-x-8 lg:flex-col w-full"
           >
-            <div :class="`w-20 h-20  rounded-full overflow-hidden bg-black`">
-              <NuxtImg
-                src="/icons/login.jpg"
-                width="150px"
-                height="150px"
-                :modifiers="{ rotate: null }"
-                class="-scale-x-100"
-              />
-              <img src="/logout.avif" class="h-full object-cover" />
-            </div>
-            <span class="text-black text-lg pb-3 font-bold">Logout</span>
-          </div> -->
-          <!-- <NavItem title="pics" to="/pics" img="/image3.jpg"/> -->
-          <!-- <NavItem title="links" to="/links" img="/image4.jpg"/> -->
+            <NavItem
+              title="home"
+              to="/"
+              img="/o/icons/home.JPG"
+              imgStyle="bottom:-2px; max-width:129%"
+            />
+            <NavItem title="polls" to="/polls" img="/o/icons/polls.JPG" />
+            <NavItem
+              v-if="!isLoggedIn"
+              title="login"
+              to="/login"
+              imgStyle="bottom:-2px; max-width:129%"
+              img="/o/icons/login.jpg"
+            />
+            <NavItem
+              v-else
+              @click="logout"
+              title="logout"
+              imgStyle="bottom:-2px;max-width:120%; left:-10px"
+              img="/o/icons/login.jpg"
+              imgClass="-scale-y-100"
+            />
+          </div>
         </SidebarContainer>
       </div>
     </div>

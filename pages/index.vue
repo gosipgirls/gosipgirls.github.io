@@ -22,12 +22,12 @@
     <SidebarItem color="text-lime-600" title="Links" />
   </SidebarContainer>
 
-  <div class="col-span-3 px-5">
+  <div class="lg:col-span-3 sm:col-span-5 col-span-5 px-5">
     <div class="bg-white overflow-hidden rounded-md w-full h-full flex">
       <!-- height="150px" -->
       <!-- width="150px" -->
       <div>
-        <NuxtImg src="/mainpage.jpeg" :modifiers="{ rotate: null }" />
+        <img src="/mainpage.jpeg" :modifiers="{ rotate: null }" />
       </div>
     </div>
   </div>
